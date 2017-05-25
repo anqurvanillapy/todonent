@@ -1,0 +1,9 @@
+{
+  "name": "todonent",
+  "version": "0.1.0",
+  "description": "Minimal TODO app with Web Components",
+  "main": "index.js",
+  "repository": "git@github.com:anqurvanillapy/todonent.git",
+  "author": "AnqurVanillapy <anqurvanillapy@gmail.com>",
+  "license": "ISC"
+}
