@@ -22,14 +22,27 @@ class TodoApp extends HTMLElement {
   connectedCallback () { this.render() }
 
   render () {
-    let containerStyle =
-    `border: solid 1px #999;
-    border-radius: 3px;`
+    let todoBox = document.createElement('template')
+    todoBox.innerHTML =
+    `<style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    let container = document.createElement('div')
-    container.textContent = 'Hello, Web Components!'
-    container.setAttribute('style', containerStyle)
-    this.shadowRoot.appendChild(container)
+      .container {
+        padding: 2px;
+        border: solid 1px #999;
+        border-radius: 2px;
+      }
+      </style>
+      <div class="container">
+        <input type="text" name="entry">
+        <button type="button">Add</button>
+      </div>`
+
+    this.shadowRoot.appendChild(document.importNode(todoBox.content, true))
   }
 }
 
