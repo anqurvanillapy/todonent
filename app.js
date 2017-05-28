@@ -141,7 +141,7 @@ class TodoItem extends HTMLElement {
       this.updateRemove(this.checkboxDone.checked)
     })
 
-    this.labelVal.textContent = `${this.val}`
+    this.labelVal.textContent = this.val
     this.shadowRoot.appendChild(todoItem)
   }
 
@@ -159,12 +159,10 @@ class TodoItem extends HTMLElement {
   }
 
   updateRemove (isDone) {
-    let nitem = parseInt(this.todoBox.nitem) || 0
-    let done = parseInt(this.todoBox.done) || 0
-
-    if (isDone) --done
-    this.todoBox.setAttribute('nitem', --nitem)
-    this.todoBox.setAttribute('done', done)
+    this.todoBox.setAttribute('nitem', parseInt(this.todoBox.nitem) - 1)
+    if (isDone) {
+      this.todoBox.setAttribute('done', parseInt(this.todoBox.done) - 1)
+    }
 
     document.body.removeChild(this)
   }
