@@ -4,7 +4,7 @@ let wrapFn = text => {
   return document.importNode(tmpl.content, true)
 }
 
-class TodoApp extends HTMLElement {
+class TodoBox extends HTMLElement {
   constructor () {
     super()
     this._nitem = 0
@@ -40,10 +40,12 @@ class TodoApp extends HTMLElement {
   render () {
     let todoBox = wrapFn`
       <style>
-      header h1 {
+      a {
         color: #ccc;
-        text-align: center;
+        text-decoration: none;
       }
+
+      header { text-align: center; }
 
       #todobox {
         padding: .5em;
@@ -56,7 +58,9 @@ class TodoApp extends HTMLElement {
         #todobox > * { font-size: 1.5em; }
         #todobox > input { width: 90%; }
       </style>
-      <header><h1>Todos</h1></header>
+      <header>
+        <h1><a href="https://github.com/anqurvanillapy/todonent">Todos</a></h1>
+      </header>
       <div id="todobox">
         <input id="entry" type="text">
         <button id="add" type="button">+</button>
@@ -131,7 +135,7 @@ class TodoItem extends HTMLElement {
     this.btnRemove = todoItem.getElementById('remove')
     this.checkboxDone = todoItem.getElementById('done')
     this.labelVal = todoItem.getElementById('val')
-    this.todoBox = document.querySelector('todo-app')
+    this.todoBox = document.querySelector('todo-box')
 
     this.checkboxDone.addEventListener('click', _ => {
       this.updateDone(this.checkboxDone.checked)
@@ -168,5 +172,5 @@ class TodoItem extends HTMLElement {
   }
 }
 
-customElements.define('todo-app', TodoApp)
+customElements.define('todo-box', TodoBox)
 customElements.define('todo-item', TodoItem)
